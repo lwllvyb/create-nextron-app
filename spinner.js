@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const ora = require('ora');
+const ora = require('ora').default;
 const chalk = require('chalk').default;
 
 const cache = {};
