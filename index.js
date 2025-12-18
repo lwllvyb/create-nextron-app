@@ -78,11 +78,11 @@ async function validateExistence(example) {
 
 async function downloadAndExtract(example, dirname, spinner) {
   const mainUrl = 'https://codeload.github.com/saltyshiomix/nextron/tar.gz/main';
-  const got = require('got');
+  const got = require('got').default;
   const { t, x } = require('tar');
 
   let ext = 'js';
-  await got
+  got
     .stream(mainUrl)
     .pipe(t({ cwd: dirname, strip: 3, filter: (path) => {
       if (path.endsWith(`${example}/tsconfig.json`)) {
