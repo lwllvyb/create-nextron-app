@@ -58,7 +58,7 @@ async function createNextronApp() {
   try {
     spinner.create('Downloading and extracting...');
     const dirname = path.join(cwd, args._[0]);
-    await require('make-dir')(dirname);
+    await require('make-dir').makeDirectory(dirname);
     await downloadAndExtract(example, dirname, spinner);
   } catch (error) {
     console.error(error);
