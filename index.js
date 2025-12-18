@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const arg = require('arg');
-const chalk = require('chalk');
+const chalk = require('chalk').default;
 
 const cwd = process.cwd();
 
@@ -23,20 +23,20 @@ if (args['--version']) {
 }
 
 if (args['--help'] || (!args._[0])) {
-  console.log(chalk`
-    {bold.cyan create-nextron-app} - Create Nextron (Electron + Next.js) apps in one command ⚡
+  console.log(`
+    ${chalk.cyan('create-nextron-app')} Create Nextron (Next.js + Electron) apps in one command ⚡
 
-    {bold USAGE}
+    ${chalk.bold('USAGE')}
 
-      {bold $} {cyan create-nextron-app} --help
-      {bold $} {cyan create-nextron-app} {underline my-app}
-      {bold $} {cyan create-nextron-app} {underline my-app} [--example {underline example_folder_name}]
+      ${chalk.bold('$')} ${chalk.cyan('create-nextron-app')} --help
+      ${chalk.bold('$')} ${chalk.cyan('create-nextron-app')} ${chalk.underline('my-app')}
+      ${chalk.bold('$')} ${chalk.cyan('create-nextron-app')} ${chalk.underline('my-app')} [--example ${chalk.underline('example_folder_name')}]
 
-    {bold OPTIONS}
+    ${chalk.bold('OPTIONS')}
 
       --help,     -h                      shows this help message
       --version,  -v                      displays the current version of create-nextron-app
-      --example,  -e {underline example_folder_name}  sets the example as a template
+      --example,  -e ${chalk.underline('example_folder_name')}  sets the example as a template
   `);
   process.exit(0);
 }

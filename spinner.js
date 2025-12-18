@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 const ora = require('ora');
-const chalk = require('chalk');
+const chalk = require('chalk').default;
 
 const cache = {};
 const isTTY = process.env.CI ? false : process.stdout.isTTY;
 
 function create(text) {
   if (!isTTY) {
-    console.log(chalk`{cyan [create-nextron-app]} ${text}`);
+    console.log(chalk.cyan(`[create-nextron-app] ${text}`));
     return;
   }
 
@@ -26,7 +26,7 @@ function create(text) {
 
 function clear(message, isError) {
   if (!isTTY) {
-    console.log(chalk`{cyan [create-nextron-app]} ${message}`);
+    console.log(chalk.cyan(`[create-nextron-app] ${message}`));
     return;
   }
 
