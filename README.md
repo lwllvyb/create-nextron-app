@@ -36,6 +36,16 @@ $ yarn create nextron-app my-app
 $ yarn create nextron-app my-app --example with-tailwindcss
 ```
 
+### With pnpm
+
+```bash
+# `basic-lang-javascript` example
+$ pnpm dlx create-nextron-app my-app
+
+# `with-tailwindcss` example
+$ pnpm dlx create-nextron-app my-app --example with-tailwindcss
+```
+
 ## Examples
 
 <https://github.com/saltyshiomix/nextron/tree/main/examples>
