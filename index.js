@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const arg = require('arg');
-const chalk = require('chalk');
+const chalk = require('chalk').default;
 
 const cwd = process.cwd();
 
@@ -23,20 +23,20 @@ if (args['--version']) {
 }
 
 if (args['--help'] || (!args._[0])) {
-  console.log(chalk`
-    {bold.cyan create-nextron-app} - Create Nextron (Electron + Next.js) apps in one command ⚡
+  console.log(`
+    ${chalk.cyan('create-nextron-app')} Create Nextron (Next.js + Electron) apps in one command ⚡
 
-    {bold USAGE}
+    ${chalk.bold('USAGE')}
 
-      {bold $} {cyan create-nextron-app} --help
-      {bold $} {cyan create-nextron-app} {underline my-app}
-      {bold $} {cyan create-nextron-app} {underline my-app} [--example {underline example_folder_name}]
+      ${chalk.bold('$')} ${chalk.cyan('create-nextron-app')} --help
+      ${chalk.bold('$')} ${chalk.cyan('create-nextron-app')} ${chalk.underline('my-app')}
+      ${chalk.bold('$')} ${chalk.cyan('create-nextron-app')} ${chalk.underline('my-app')} [--example ${chalk.underline('example_folder_name')}]
 
-    {bold OPTIONS}
+    ${chalk.bold('OPTIONS')}
 
       --help,     -h                      shows this help message
       --version,  -v                      displays the current version of create-nextron-app
-      --example,  -e {underline example_folder_name}  sets the example as a template
+      --example,  -e ${chalk.underline('example_folder_name')}  sets the example as a template
   `);
   process.exit(0);
 }
@@ -58,7 +58,7 @@ async function createNextronApp() {
   try {
     spinner.create('Downloading and extracting...');
     const dirname = path.join(cwd, args._[0]);
-    await require('make-dir')(dirname);
+    await require('make-dir').makeDirectory(dirname);
     await downloadAndExtract(example, dirname, spinner);
   } catch (error) {
     console.error(error);
@@ -78,11 +78,11 @@ async function validateExistence(example) {
 
 async function downloadAndExtract(example, dirname, spinner) {
   const mainUrl = 'https://codeload.github.com/saltyshiomix/nextron/tar.gz/main';
-  const got = require('got');
+  const got = require('got').default;
   const { t, x } = require('tar');
 
   let ext = 'js';
-  await got
+  got
     .stream(mainUrl)
     .pipe(t({ cwd: dirname, strip: 3, filter: (path) => {
       if (path.endsWith(`${example}/tsconfig.json`)) {
